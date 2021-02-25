@@ -70,7 +70,7 @@ def generate_game_grap(games_number_per_probability: int, a_capital: int, b_capi
     plt.ylabel(f"Lmax")
     plt.xlabel(f"p(A)")
     plt.title(f"Distribution of the maximum game length at {games_number_per_probability} games")
-    fig.savefig("example1.png")
+    # fig.savefig("example1.png")
     plt.show()
 
 
