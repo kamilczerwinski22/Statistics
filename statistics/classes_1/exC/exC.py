@@ -1,5 +1,6 @@
 # A script for comparing theoretical and experimental values of player A's chance of bankruptcy depending on
-# the probability of winning in single game
+# the capital of player A and capital of player B
+# Version 1 with A from 0 to 100 every 10 steps
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
 import random
@@ -30,18 +31,18 @@ def experimental_probability(iterations: int, a_capital: int, b_capital: int, p:
     """
     Function for calculating experimental probability for specified p, q, player A capital, player B capital.
     :param iterations: Number of games
-    :param p: Probability of winning by player A in single game turn
-    :param q: Probability of winning by player B in single game turn
+    :param p: Probability of winning by player A
+    :param q: Probability of winning by player B
     :param a_capital: Capital of player A
     :param b_capital: Capital of player B
-    :return: Probability to win game by player A
+    :return: Probability to win by player A
     """
     # initial variables
     population: list = ['A', 'B']
     weights: list = [p, q]
     a_loses: int = 0
 
-    # main function logic
+    # main script logic
     for _ in range(iterations):
         A_capital_game = a_capital
         B_capital_game = b_capital
@@ -57,88 +58,84 @@ def experimental_probability(iterations: int, a_capital: int, b_capital: int, p:
     return a_loses / iterations
 
 
-def generate_theory_list(a_capital: int, b_capital: int) -> list:
+def generate_theory_list(p: float, q: float) -> list:
     """
-    Function for generating list with theoretical win probability values at each probability.
-    :param a_capital: Capital of player A
-    :param b_capital: Capital of player B
+    Function for generating list with theoretical win probability values at each for given capital values.
+    :param p: Probability of player A win in single game turn
+    :param q: Probability of player B win in single game turn
     :return: List of theoretical win probability values
     """
     # initial variables
     lst: list = []
 
     # main function logic
-    for x in range(0, 11):
-        p = x / 10.0
-        q = round(1 - p, 1)
-        try:
-            lst.append(theory_probability(p=p, q=q, a_capital=a_capital, b_capital=b_capital))
-        except ZeroDivisionError:
-            lst.append(1.0)
+    for x in range(0, 101, 10):
+        a_capital = x
+        b_capital = 100 - x
+        lst.append(theory_probability(p=p, q=q, a_capital=a_capital, b_capital=b_capital))
     return lst
 
 
-def generate_experimental_list(iterations: int, a_capital: int, b_capital: int) -> list:
+def generate_experimental_list(iterations: int, p: float, q: float) -> list:
     """
-    Function for generating list with experimental win probability values at each probability.
+    Function for generating list with experimental win probability values at each for given capital values.
     :param iterations: Number of games played
-    :param a_capital: Capital of player A
-    :param b_capital: Capital of player B
-    :return: List of experimental values
+    :param p: Probability of player A win in single game turn
+    :param q: Probability of player B win in single game turn
+    :return: List of experimental win probability values
     """
     # initial variables
     lst: list = []
 
     # main function logic
-    for x in range(0, 11):
-        p = x / 10.0
-        q = round(1 - p, 1)
-        print(f"Current p = {p}, q = {q}")
-        try:
-            lst.append(experimental_probability(iterations=iterations,
-                                                a_capital=a_capital,
-                                                b_capital=b_capital,
-                                                p=p,
-                                                q=q))
-        except ZeroDivisionError:
-            lst.append(1.0)
+    for x in range(0, 101, 10):
+        a_capital = x
+        b_capital = 100 - x
+        print(f"Current: A = {a_capital}, B = {b_capital}")
+        lst.append(experimental_probability(iterations=iterations,
+                                            a_capital=a_capital,
+                                            b_capital=b_capital,
+                                            p=p,
+                                            q=q))
     return lst
 
 
-def show_graph(iterations: int, a_capital: int, b_capital: int) -> None:
+def show_graph(iterations: int, p: float, q: float) -> None:
     """
     Function for generating scatter/plot chart with experimental and theoretical values for player A winning
-    probability.
+    probability depending on player A and player B capitals.
     :param iterations: Number of games played
-    :param a_capital: Capital of player A
-    :param b_capital: Capital of player B
+    :param p: Probability of player A win in single game turn
+    :param q: Probability of player B win in single game turn
     :return: None
     """
     # initial variables and generating data
-    theory_list: list = generate_theory_list(a_capital=a_capital,
-                                             b_capital=b_capital)
-    print(f'Theoretical list done')
+    theory_list: list = generate_theory_list(p=p,
+                                             q=q)
+    print(f"Theoretical list done")
     experimental_list: list = generate_experimental_list(iterations=iterations,
-                                                         a_capital=a_capital,
-                                                         b_capital=b_capital)
-    print(f'Experimental list done')
-    p_values: list = [x / 10.0 if x != 0 else 0 for x in range(0, 11)]
+                                                         p=p,
+                                                         q=q)
+    print(f"Experimental list done")
+    a_list: list = [x for x in range(0, 101, 10)]
 
     # draw graph
     y_pos = range(len(experimental_list))
     plt.scatter(y_pos, experimental_list, color='green', edgecolor='black', label=f'Experimental values', zorder=3)
     plt.plot(theory_list, color='red', label=f'Theoretical values', zorder=2)
-    plt.xticks(y_pos, p_values)
     plt.grid(axis='y')
-    plt.yticks([i/10 for i in range(0, 11)], [f'{i}%' for i in range(0, 101, 10)])
+    plt.xticks(y_pos, a_list)
+    plt.yticks([i / 10 for i in range(0, 11)], [f'{i}%' for i in range(0, 101, 10)])
     plt.ylabel("Chance of player A going bankrupt")
-    plt.xlabel("P values")
+    plt.xlabel("Player A's capital")
     plt.title("Player A's bankrupt chance chart", loc='left')
-    plt.text(6.7, 1.1, f'A capital = {a_capital}, B capital = {b_capital},\n Iterations = {iterations}')
+    plt.text(7.7, 1.1, f'p = {p}, q = {q},\n Iterations = {iterations}')
     plt.legend()
-    # plt.savefig('example1.png')
+    # plt.savefig('example3.png')
     plt.show()
 
 
 if __name__ == '__main__':
-    show_graph(10000, 50, 50)
+    show_graph(iterations=5000,
+               p=0.51,
+               q=0.49)
