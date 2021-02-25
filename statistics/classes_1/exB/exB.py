@@ -56,7 +56,7 @@ def experimental_probability(iterations: int, a_capital: int, b_capital: int, p:
 
 def generate_theory_list(a_capital, b_capital) -> list:
     """
-    Function for generating list with theoretical probability values.
+    Function for generating list with theoretical win probability values at each probability.
     :param a_capital: Capital of player A
     :param b_capital: Capital of player B
     :return: List of theoretical values
@@ -74,7 +74,7 @@ def generate_theory_list(a_capital, b_capital) -> list:
 
 def generate_experimental_list(iterations: int, a_capital: int, b_capital: int) -> list:
     """
-    Function for generating list with theoretical probability values.
+    Function for generating list with experimental win probability values at each probability.
     :param iterations: Number of games played
     :param a_capital: Capital of player A
     :param b_capital: Capital of player B
