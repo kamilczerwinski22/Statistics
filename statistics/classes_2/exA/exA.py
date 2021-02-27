@@ -1,6 +1,7 @@
 # A script where for a given probability matrix (made from a markov chain)
 # multiply it by itself N times until a convergence criterion is found (each successive
 # multiplication yields very small changes), e.g. |P^n - P^(n-1)| < 10^(-5).
+# The pi values show a steady state drive.
 # Script will show theoretical results (experimental results in script B).
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
@@ -80,7 +81,7 @@ def show_graph(elements: list, max_iteration_number: int) -> None:
     plt.ylabel(f"Experimental pi values")
     plt.xlabel(f"Number of iterations. Max iteration until convergence criterion meet: {max_iteration_number}")
     plt.title(f"Markov matrix graph example theoretical", loc='left')
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize='xx-small')
+    plt.legend(loc='upper right', fontsize='xx-small')
     plt.savefig(f"example1.png")
     plt.show()
 

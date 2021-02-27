@@ -1,6 +1,7 @@
 # A script where starting from Markov chain node we draw the probability of passing from one node to another
 # according to the given probability matrix (made from Markov chain). We do this many times. In the end we check how
 # many times we visited each node.
+# The pi values show a steady state drive.
 # Script will show experimental results (theoretical results in script A).
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
@@ -58,7 +59,7 @@ def show_graph(elements: list, num_of_iterations: int, leap: int) -> None:
     plt.ylabel(f"Experimental pi values")
     plt.xlabel(f"Number of iterations: {num_of_iterations}, leap every: {leap}")
     plt.title(f"Markov matrix graph example experimental", loc='left')
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize='xx-small')
+    plt.legend(loc='upper right', fontsize='xx-small')
     plt.savefig(f"example1.png")
     plt.show()
 
