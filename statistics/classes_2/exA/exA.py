@@ -78,7 +78,7 @@ def show_graph(elements: list, max_iteration_number: int) -> None:
         y_pos = range(len(results))
         plt.plot(y_pos, results, color=color, label=f"P.p. = {results[0]}")
     plt.grid(zorder=0)
-    plt.ylabel(f"Experimental pi values")
+    plt.ylabel(f"Theoretical pi values")
     plt.xlabel(f"Number of iterations. Max iteration until convergence criterion meet: {max_iteration_number}")
     plt.title(f"Markov matrix graph example theoretical", loc='left')
     plt.legend(loc='upper right', fontsize='xx-small')
