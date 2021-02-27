@@ -1,6 +1,7 @@
 # A script where for a given probability matrix (made from a markov chain)
 # multiply it by itself N times until a convergence criterion is found (each successive
-# multiplication yields very small changes), e.g. |P^n - P^(n-1)| < 10^(-5)
+# multiplication yields very small changes), e.g. |P^n - P^(n-1)| < 10^(-5).
+# Script will show theoretical results (experimental results in script B).
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
 
@@ -36,7 +37,7 @@ def highest(matrix: list) -> float:
 
 def calculation_handler(convergence_criterion: float) -> tuple:
     """
-    Function for handling matrix by matrix multiplication.
+    Function for handling matrix by matrix multiplication and performing main calculations.
     :param convergence_criterion: Assumed convergence criterion after which calculations stop
     :return: Tuple containing (result, counter), where result is matrix multiplied counter times by itself
     """
@@ -78,7 +79,7 @@ def show_graph(elements: list, max_iteration_number: int) -> None:
     plt.grid(zorder=0)
     plt.ylabel(f"Experimental pi values")
     plt.xlabel(f"Number of iterations. Max iteration until convergence criterion meet: {max_iteration_number}")
-    plt.title(f"Markov matrix graph example", loc='left')
+    plt.title(f"Markov matrix graph example theoretical", loc='left')
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize='xx-small')
     plt.savefig(f"example1.png")
     plt.show()
@@ -91,7 +92,7 @@ def main() -> None:
     """
     result, max_iteration = calculation_handler(0.00001)
     res_transpose = list(zip(*result))  # transposed result where each internal list represents changes of one original
-    # matrix field
+    # matrix field as the iteration progresses
     show_graph(res_transpose, max_iteration)
 
 
