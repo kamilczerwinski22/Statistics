@@ -70,14 +70,14 @@ def calculate_time(lambda_a: float, lambda_s: float, num_of_tasks: int) -> None:
     # task arrival time dots
     plt.scatter(scheduled_list, queue_list_scheduled, color='red', zorder=3)
     # task execution time dots
-    plt.scatter(ending_time_list, queue_list_after, color='blue', zorder=3)
+    plt.scatter(ending_time_list, queue_list_after, color='blue', zorder=2)
     # number of task above each task arrival dot
     for scheduled_num in range(len(scheduled_list)):
         plt.text(scheduled_list[scheduled_num],
                  queue_list_scheduled[scheduled_num] + 0.05,
                  scheduled_num + 1,
                  color='000000',
-                 horizontalalignment="center", zorder=2)
+                 horizontalalignment="center", zorder=4)
     plt.xticks(sorted(ending_time_list + scheduled_list), [])
     plt.yticks(range(0, max(queue_list_scheduled) + 1))
     plt.grid(axis='x', color='#d6d6d6')
