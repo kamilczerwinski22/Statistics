@@ -54,17 +54,21 @@ def calculate_population_one_child(num_of_people: int, men_factor: float, fertil
 
     # draw graph
     fig, ax = plt.subplots()
-    ax.grid(zorder=1, axis='y')
-    # ax.locator_params(axis='y', nbins=20)
+
+    # generate bars
     bars = ax.bar(generations_list, population_list, width=0.8, color='#0086C1', edgecolor='black', zorder=2)
-    ax.ticklabel_format(style='plain')
-    plt.yticks([num for num in range(0, num_of_people + 1, num_of_people // 10)])
-    plt.xticks(generations_list)
+
     # print values above bars
     for bar in bars:
         height = bar.get_height()
         ax.text(bar.get_x() + bar.get_width() * 0.5, 1.01 * height, '{}'.format(height), ha='center', va='bottom',
                 fontproperties='serif', fontsize=8)
+
+    ax.ticklabel_format(style='plain')
+    plt.yticks([num for num in range(0, num_of_people + 1, num_of_people // 10)])
+    plt.xticks(generations_list)
+    ax.grid(zorder=1, axis='y')
+
     plt.ylabel(f"Population size")
     plt.xlabel(f"Generations")
     plt.title(f"Population control - one child policy", loc='left')
@@ -116,17 +120,21 @@ def calculate_population_one_son(num_of_people: int, men_factor: float, fertilit
 
     # draw graph
     fig, ax = plt.subplots()
-    ax.grid(zorder=1, axis='y')
-    # ax.locator_params(axis='y', nbins=20)
+
+    # generate bars
     bars = ax.bar(generations_list, population_list, width=0.8, color='#0086C1', edgecolor='black', zorder=2)
-    ax.ticklabel_format(style='plain')
-    plt.yticks([num for num in range(0, num_of_people + 1, num_of_people//10)])
-    plt.xticks(generations_list)
+
     # print values above bars
     for bar in bars:
         height = bar.get_height()
         ax.text(bar.get_x() + bar.get_width() * 0.5, 1.01 * height, '{}'.format(height), ha='center', va='bottom',
                 fontproperties='serif', fontsize=8)
+
+    ax.grid(zorder=1, axis='y')
+    ax.ticklabel_format(style='plain')
+    plt.yticks([num for num in range(0, num_of_people + 1, num_of_people // 10)])
+    plt.xticks(generations_list)
+
     plt.ylabel(f"Population size")
     plt.xlabel(f"Generations")
     plt.title(f"Population control - one son policy", loc='left')
