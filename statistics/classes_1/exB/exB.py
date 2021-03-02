@@ -126,17 +126,17 @@ def show_graph(iterations: int, a_capital: int, b_capital: int) -> None:
 
     # draw graph
     y_pos = range(len(experimental_list))
-    plt.scatter(y_pos, experimental_list, color='green', edgecolor='black', label=f'Experimental values', zorder=3)
-    plt.plot(theory_list, color='red', label=f'Theoretical values', zorder=2)
+    plt.plot(theory_list, color='red', label=f'Theoretical values', marker='o', markerfacecolor='green',
+             markeredgecolor='black')
     plt.xticks(y_pos, p_values)
     plt.grid(axis='y')
-    plt.yticks([i/10 for i in range(0, 11)], [f'{i}%' for i in range(0, 101, 10)])
+    plt.yticks([i / 10 for i in range(0, 11)], [f'{i}%' for i in range(0, 101, 10)])
     plt.ylabel("Chance of player A going bankrupt")
     plt.xlabel("P values")
     plt.title("Player A's bankrupt chance chart", loc='left')
     plt.text(6.7, 1.1, f'A capital = {a_capital}, B capital = {b_capital},\n Iterations = {iterations}')
     plt.legend()
-    # plt.savefig('example1.png')
+    plt.savefig('example1.png')
     plt.show()
 
 
