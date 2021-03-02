@@ -6,13 +6,6 @@
 # Script is almost the same as in exB, but with a different value of winning one game.
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
-# Script with a simulation of a given number of dice rolls (or until one of the players goes bankrupt). To win
-# player's roll have to be higher than his opponent's (Player's dice roll > opponent's dice roll). Winning gives one
-# coin to the player, losing takes one away.
-# The script generates experimental and theoretical graphs of the dependence of capital on the number of games.
-# The experimental average win per game is also compared to the theoretical value.
-# Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
-
 import random
 import matplotlib.pyplot as plt
 
