@@ -3,8 +3,8 @@
 # - probability of girl being born,
 # - starting population,
 # - percentage of fertility of the couples formed
-# A simulation of two policies (one child, one son) of population control for 10 generations is created. Script
-# generates graphs of the number of people depending on the generation number.
+# A simulation of two policies (one child, one son) of population control for 10 generations is created.
+# Script generates graphs of the number of people depending on the generation number.
 # Author: Kamil Czerwiński, Jagiellonian University, CS 2020/2021
 
 import random
