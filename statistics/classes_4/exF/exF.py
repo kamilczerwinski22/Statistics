@@ -12,13 +12,14 @@ def blackjack_game() -> int:
     :return: Number of cards needed to bust the game
     """
     # initial variables
+    # list simulating deck of cards
     cards: list = ['2'] * 4 + ['3'] * 4 + \
                   ['4'] * 4 + ['5'] * 4 + \
                   ['6'] * 4 + ['7'] * 4 + \
                   ['8'] * 4 + ['9'] * 4 + \
                   ['10'] * 4 + ['K'] * 4 + \
                   ['Q'] * 4 + ['J'] * 4 + \
-                  ['A'] * 4  # list simulating deck of cards
+                  ['A'] * 4
     score: int = 0
     num_of_cards: int = 0
 
