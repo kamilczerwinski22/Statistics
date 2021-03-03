@@ -13,14 +13,14 @@ from math import floor
 
 
 # one child policy
-def calculate_population_one_child(num_of_people: int, men_factor: float, fertility: float):
+def calculate_population_one_child(num_of_people: int, men_factor: float, fertility: float) -> None:
     """
     Function calculating number of people at each of the 10 iterations (generations) and generating adequate bar
     graph for one child politics (every couple has one child, regardless of gender).
     :param num_of_people: Number of people in first generation
     :param men_factor: Initial percentage of males in the population/probability of boy being born
     :param fertility: Percentage of fertility of the couples formed
-    :return:
+    :return: None
     """
     # initial variables
     population_list: list = [num_of_people]
@@ -77,14 +77,14 @@ def calculate_population_one_child(num_of_people: int, men_factor: float, fertil
 
 
 # One son policy
-def calculate_population_one_son(num_of_people: int, men_factor: float, fertility: float):
+def calculate_population_one_son(num_of_people: int, men_factor: float, fertility: float) -> None:
     """
     Function calculating number of people at each of the 10 iterations (generations) and generating adequate bar
     graph for one child politics (every couple has has children until a boy is born).
     :param num_of_people: Number of people in first generation
     :param men_factor: Initial percentage of males in the population/probability of boy being born
     :param fertility: Percentage of fertility of the couples formed
-    :return:
+    :return: None
     """
     # initial variables
     population_list: list = [num_of_people]
